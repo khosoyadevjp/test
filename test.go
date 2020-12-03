@@ -25,7 +25,7 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method:", r.Method) //get request method
 	if r.Method == "GET" {
-		t, _ := template.ParseFiles("login.gtpl")
+		t, _ := template.ParseFiles("html/login.gtpl")
 		t.Execute(w, nil)
 	} else {
 		r.ParseForm()
@@ -38,7 +38,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", sayhelloName) // setting router rule
 	http.HandleFunc("/login", login)
-	err := http.ListenAndServe(":9091", nil) // setting listening port
+	err := http.ListenAndServe(":9090", nil) // setting listening port
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
